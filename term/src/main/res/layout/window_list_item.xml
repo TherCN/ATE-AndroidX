@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:gravity="center">
+
+	<TextView
+		android:id="@+id/window_list_label"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="15dp"
+		android:maxLines="1"
+		android:singleLine="true"
+		android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+	<ImageView
+		class="jackpal.androidterm.WindowList$CloseButton"
+		android:id="@+id/window_list_close"
+		android:layout_width="30dp"
+		android:layout_height="52dp"
+		android:background="@drawable/close_background"
+		android:src="@drawable/ic_remove"
+		android:scaleType="fitCenter"
+		android:layout_gravity="center"/>
+
+</LinearLayout>
+

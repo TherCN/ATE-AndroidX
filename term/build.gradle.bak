@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "jackpal.androidterm"
+        minSdkVersion 22
+        targetSdkVersion 28
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+	implementation 'com.google.android.material:material:1.0.0'
+	implementation 'androidx.appcompat:appcompat:1.0.0'
+	
+    compile project(':emulatorview')
+
+}

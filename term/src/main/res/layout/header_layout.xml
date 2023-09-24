@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:gravity="bottom"
+	android:orientation="vertical"
+	android:padding="7dp">
+
+	<LinearLayout
+		android:id="@+id/app_home"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		tools:ignore="UseCompoundDrawables">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:contentDescription="app"
+				app:srcCompat="@drawable/ic_launcher"/>
+
+		</LinearLayout>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Terminal"
+			android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/app_email"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="b1431736437@163.com"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:textStyle="italic"/>
+
+</LinearLayout>
+
