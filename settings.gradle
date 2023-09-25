@@ -1,2 +1,11 @@
-include ':emulatorview'
-include ':term'
+pluginManagement {
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+
+rootProject.name = "Terminal Emulator"
+
+include(":term")
+include(":emulatorview")

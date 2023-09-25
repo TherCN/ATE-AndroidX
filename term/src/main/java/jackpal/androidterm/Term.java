@@ -336,7 +336,7 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-		setContentView(R.layout.drawer_layout);
+		setContentView(R.layout.terminal_layout);
 		if (!Permission.checkPermission(this))
 		{
 			Thread.currentThread().suspend();
@@ -345,9 +345,6 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
 			Runtime.getRuntime().exec("logcat >" + "/sdcard/TermLog.txt");
 		} catch (IOException e) {}
         Log.e(TermDebug.LOG_TAG, "onCreate");
-		
-		
-		
 		InitTerminal();
     }
 
@@ -416,7 +413,6 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
 		mActionBarMode = actionBarMode;
 
         mViewFlipper = findViewById(VIEW_FLIPPER);
-
         PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TermDebug.LOG_TAG);
 
@@ -431,6 +427,7 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
 
         updatePrefs();
         mAlreadyStarted = true;
+		
 	}
 
 
@@ -547,7 +544,6 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         TermView emulatorView = new TermView(this, session, metrics);
-
 		emulatorView.setExtGestureListener(new EmulatorViewGestureListener(emulatorView));
         emulatorView.setOnKeyListener(mKeyListener);
 		emulatorView.setOnLongClickListener(mLongCluckListener);

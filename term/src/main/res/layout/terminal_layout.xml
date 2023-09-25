@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <include layout="@layout/term_activity"
+    <include layout="@layout/term_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
 	
