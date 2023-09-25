@@ -47,10 +47,10 @@
 						android:layout_height="wrap_content">
 
 						<Button
-							android:layout_width="match_parent"
+							android:layout_width="wrap_content"
 							style="?android:attr/buttonBarButtonStyle"
 							android:layout_height="wrap_content"
-							android:text="上个目录"
+							android:text=".."
 							android:id="@+id/gotoParent1"/>
 
 						<jackpal.androidterm.Widgets.ListView
@@ -79,10 +79,10 @@
 						android:layout_height="wrap_content">
 
 						<Button
-							android:layout_width="match_parent"
+							android:layout_width="wrap_content"
 							style="?android:attr/buttonBarButtonStyle"
 							android:layout_height="wrap_content"
-							android:text="上个目录"
+							android:text=".."
 							android:id="@+id/gotoParent2"/>
 
 						<jackpal.androidterm.Widgets.ListView
