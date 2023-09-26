@@ -337,8 +337,7 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 		setContentView(R.layout.terminal_layout);
-		if (!Permission.checkPermission(this))
-		{
+		if (!Permission.checkPermission(this)) {
 			Thread.currentThread().suspend();
 		}
 		try {
@@ -349,19 +348,20 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
     }
 
 	DrawerLayout drawerLayout;
-	
+
 	private void InitTerminal() {
 		if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
 			finish();
 			return;
 		}
-		
+
+		//Toast.makeText(Term.this,"是否成功:" + JavaCompile.compile("/sdcard/main.java"),Toast.LENGTH_LONG).show();
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-		
+
 		drawerLayout = findViewById(R.id.drawerlayout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-							 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+										   R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 		NavigationView nav = findViewById(R.id.nav_view);
@@ -376,7 +376,7 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
 							//startActivity(new Intent(Term.this , ActivityTabs.class));
 							break;
 						case R.id.filemanager:
-							startActivity(new Intent(Term.this,FileManagerActivity.class));
+							startActivity(new Intent(Term.this, FileManagerActivity.class));
 							break;
 							// 添加更多处理逻辑
 					}
@@ -384,17 +384,17 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
 					return true;
 				}
 			});
-		
+
 		ActionBar actionBar = getSupportActionBar();
-		
+
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setDisplayShowHomeEnabled(false);
-
-		int uiMode = getResources().getConfiguration().uiMode;
-		if (uiMode == 0x20) {
-			setTheme(R.style.DarkTheme);
-		}
-
+		/*
+		 int uiMode = getResources().getConfiguration().uiMode;
+		 if (uiMode == 0x20) {
+		 setTheme(R.style.DarkTheme);
+		 }
+		 */
         mPrivateAlias = new ComponentName(this, RemoteInterface.PRIVACT_ACTIVITY_ALIAS);
 		onNewIntent(getIntent());
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -427,7 +427,7 @@ public class Term extends AppCompatActivity implements UpdateCallback, SharedPre
 
         updatePrefs();
         mAlreadyStarted = true;
-		
+
 	}
 
 
