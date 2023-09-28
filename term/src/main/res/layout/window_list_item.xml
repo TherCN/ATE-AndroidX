@@ -17,7 +17,7 @@
 		android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 	<ImageView
-		class="jackpal.androidterm.WindowList$CloseButton"
+		class="thercn.terminal.WindowList$CloseButton"
 		android:id="@+id/window_list_close"
 		android:layout_width="30dp"
 		android:layout_height="52dp"

@@ -37,7 +37,7 @@ static jboolean testExecute(JNIEnv *env, jobject clazz, jstring jPathString)
     return (result == 0);
 }
 
-static const char *classPathName = "jackpal/androidterm/Compat/FileCompat$Api8OrEarlier";
+static const char *classPathName = "thercn/terminal/Compat/FileCompat$Api8OrEarlier";
 static JNINativeMethod method_table[] = {
     { "testExecute", "(Ljava/lang/String;)Z", (void *) testExecute },
 };

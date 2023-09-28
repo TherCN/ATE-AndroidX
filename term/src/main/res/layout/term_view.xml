@@ -17,13 +17,133 @@
 			android:layout_height="?attr/actionBarSize"/>
 
 	</com.google.android.material.appbar.AppBarLayout>
-	
-	
-	<jackpal.androidterm.TermViewFlipper
-		android:id="@+id/view_flipper"
+
+	<LinearLayout
+		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@android:color/black"/>
+		android:layout_height="0dp"
+		android:layout_weight="1">
+
+		<thercn.terminal.TermViewFlipper
+			android:id="@+id/view_flipper"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@android:color/black"/>
+
+	</LinearLayout>
+
+	<GridLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="50dp">
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="esc"
+				android:id="@+id/esc"
+				android:textSize="10sp"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="tab"
+				android:id="@+id/tab"
+				android:textSize="10sp"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="alt"
+				android:id="@+id/alt"
+				android:textSize="10sp"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="ctrl"
+				android:id="@+id/ctrl"
+				android:textSize="10sp"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="pgup"
+				android:id="@+id/pgup"
+				android:textSize="10sp"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="home"
+				android:textSize="10sp"
+				android:id="@+id/home"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="50dp">
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="↑"
+				android:id="@+id/up"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="↓"
+				android:id="@+id/down"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="←"
+				android:id="@+id/left"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:text="→"
+				android:id="@+id/right"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:textSize="10sp"
+				android:text="pgdn"
+				android:id="@+id/pgdn"/>
+
+			<Button
+				android:layout_width="60dp"
+				style="?android:attr/buttonBarButtonStyle"
+				android:layout_height="wrap_content"
+				android:textSize="10sp"
+				android:text="end"
+				android:id="@+id/end"/>
+
+		</LinearLayout>
+
+	</GridLayout>
 
 </LinearLayout>
 

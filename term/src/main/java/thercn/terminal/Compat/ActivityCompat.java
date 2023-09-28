@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Steven Luo
+ * Copyright (C) 2011 Steven Luo
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-#ifndef _JACKPAL_PROCESS_H
-#define _JACKPAL_PROCESS_H 1
+package thercn.terminal.Compat;
 
-#include <stddef.h>
-#include "jni.h"
-#include <android/log.h>
+import android.app.ActionBar;
+import android.app.Activity;
 
-#define LOG_TAG "jackpal-termexec"
+/**
+ * Compatibility class for android.app.Activity
+ */
+public class ActivityCompat {
+    public static void invalidateOptionsMenu(Activity activity) {
+		activity.invalidateOptionsMenu();
+	}
 
-extern "C" {
-JNIEXPORT jint JNICALL Java_thercn_terminal_TermExec_createSubprocessInternal
-      (JNIEnv *, jclass, jstring, jobjectArray, jobjectArray, jint);
-
-    JNIEXPORT jint JNICALL Java_thercn_terminal_TermExec_waitFor
-      (JNIEnv *, jclass, jint);
+	public static ActionBar getActionBar(Activity activity) {
+		return activity.getActionBar();
+	}
 }
-
-#endif	/* !defined(_JACKPAL_PROCESS_H) */

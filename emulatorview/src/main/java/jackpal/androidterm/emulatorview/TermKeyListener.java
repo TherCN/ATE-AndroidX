@@ -305,6 +305,7 @@ class TermKeyListener {
     private TermSession mTermSession;
 
     private int mBackKeyCode;
+	
     private boolean mAltSendsEsc;
 
     private int mCombiningAccent;
@@ -343,7 +344,16 @@ class TermKeyListener {
     public void onResume() {
         // Nothing special.
     }
-
+	
+	public void handleAltKey(boolean down) {
+        if (down) {
+            mAltKey.onPress();
+        } else {
+            mAltKey.onRelease();
+        }
+        updateCursorMode();
+    }
+	
     public void handleControlKey(boolean down) {
         if (down) {
             mControlKey.onPress();

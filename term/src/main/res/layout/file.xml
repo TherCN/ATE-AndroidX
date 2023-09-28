@@ -52,7 +52,7 @@
 							android:text=".."
 							android:id="@+id/gotoParent1"/>
 
-						<jackpal.androidterm.Widgets.ListView
+						<thercn.terminal.Widgets.ListView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:id="@+id/filelist1"
@@ -84,7 +84,7 @@
 							android:text=".."
 							android:id="@+id/gotoParent2"/>
 
-						<jackpal.androidterm.Widgets.ListView
+						<thercn.terminal.Widgets.ListView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:id="@+id/filelist2"

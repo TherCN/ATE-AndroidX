@@ -4,9 +4,9 @@ android {
     compileSdkVersion 30
     ndkVersion '23.0.7599858'
     buildToolsVersion "30.0.2"
-    namespace "jackpal.androidterm"
+    namespace "thercn.terminal"
     defaultConfig {
-        applicationId "jackpal.androidterm"
+        applicationId "thercn.terminal"
         minSdkVersion 26
         //At API level 29 and above, external executable files cannot be executed, so it remains at 28
         targetSdkVersion 28

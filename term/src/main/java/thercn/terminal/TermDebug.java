@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Steven Luo
+ * Copyright (C) 2007 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-#ifndef _JACKPAL_PROCESS_H
-#define _JACKPAL_PROCESS_H 1
+package thercn.terminal;
 
-#include <stddef.h>
-#include "jni.h"
-#include <android/log.h>
+/**
+ * Debug settings.
+ */
 
-#define LOG_TAG "jackpal-termexec"
+public class TermDebug {
+    /**
+     * Set to true to add debugging code and logging.
+     */
+    public static final boolean DEBUG = true;
 
-extern "C" {
-JNIEXPORT jint JNICALL Java_thercn_terminal_TermExec_createSubprocessInternal
-      (JNIEnv *, jclass, jstring, jobjectArray, jobjectArray, jint);
-
-    JNIEXPORT jint JNICALL Java_thercn_terminal_TermExec_waitFor
-      (JNIEnv *, jclass, jint);
+    /**
+     * The tag we use when logging, so that our messages can be distinguished
+     * from other messages in the log. Public because it's used by several
+     * classes.
+     */
+    public static final String LOG_TAG = "Term";
 }
-
-#endif	/* !defined(_JACKPAL_PROCESS_H) */

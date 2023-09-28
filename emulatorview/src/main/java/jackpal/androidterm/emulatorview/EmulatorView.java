@@ -1412,6 +1412,9 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         return false;
     }
 
+	public void sendAltKey(){
+        mKeyListener.handleAltKey(true);
+	}
     private boolean isSystemKey(int keyCode, KeyEvent event) {
         return event.isSystem();
     }
@@ -1622,6 +1625,15 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         invalidate();
     }
 
+	public void sendKey(int keycode){
+		
+	}
+	
+	
+	
+	
+	
+	
     /**
      * Send an Fn key event to the terminal.  The Fn modifier key can be used to
      * generate various special characters and escape codes.
