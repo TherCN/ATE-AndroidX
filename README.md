@@ -1,5 +1,6 @@
 # Terminal Emulator for Android
 
+[中文](https://github.com/TherCN/ATE-AndroidX/blob/main/README-zh.md)
 *Note:* Terminal Emulator for Android development has ended. I am not
 accepting pull requests any more.
 
