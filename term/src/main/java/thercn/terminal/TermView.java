@@ -18,7 +18,8 @@ package thercn.terminal;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import jackpal.androidterm.emulatorview.ColorScheme;
 import jackpal.androidterm.emulatorview.EmulatorView;
@@ -26,6 +27,8 @@ import jackpal.androidterm.emulatorview.TermSession;
 import thercn.terminal.Utils.TermSettings;
 
 public class TermView extends EmulatorView {
+	float scale = 1;
+	int size;
     public TermView(Context context, TermSession session, DisplayMetrics metrics) {
         super(context, session, metrics);
     }
@@ -34,7 +37,7 @@ public class TermView extends EmulatorView {
         if (scheme == null) {
             scheme = new ColorScheme(settings.getColorScheme());
         }
-
+		size = settings.getFontSize();
         setTextSize(settings.getFontSize());
         setUseCookedIME(settings.useCookedIME());
         setColorScheme(scheme);
@@ -44,17 +47,25 @@ public class TermView extends EmulatorView {
         setFnKeyCode(settings.getFnKeyCode());
         setTermType(settings.getTermType());
         setMouseTracking(settings.getMouseTrackingFlag());
-		setOnLongClickListener(new View.OnLongClickListener() {
+		final ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(getContext(),new ScaleListener());
+		setOnTouchListener(new View.OnTouchListener() {
 				@Override
-				public boolean onLongClick(View v) {
-					// 在这里编写响应长按事件的代码
-					Log.e("THERCN","视图被长按");
-					toggleSelectingText();
+				public boolean onTouch(View v, MotionEvent event) {
+					scaleGestureDetector.onTouchEvent(event);
 					return false;
 				}
 			});
     }
-
+	
+	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+		@Override
+		public boolean onScale(ScaleGestureDetector detector) {
+			scale *= detector.getScaleFactor();
+			scale = Math.max(0.1f, Math.min(scale, 5.0f));  // 限制缩放范围，例如0.1到5倍
+			setTextSize((int) (scale * size));  // 根据需要调整字体大小，这里假设初始字体大小为14sp
+			return true;
+		}
+	}
     public void updatePrefs(TermSettings settings) {
         updatePrefs(settings, null);
     }

@@ -32,7 +32,7 @@ public class TermSettings {
     private int mOrientation;
     private int mCursorStyle;
     private int mCursorBlink;
-    private int mFontSize;
+    public int mFontSize;
     private int mColorId;
     private boolean mUTF8ByDefault;
     private int mBackKeyAction;

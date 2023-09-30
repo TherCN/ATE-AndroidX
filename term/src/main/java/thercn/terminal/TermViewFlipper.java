@@ -21,7 +21,6 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
@@ -33,7 +32,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import thercn.terminal.Compat.AndroidCompat;
 import thercn.terminal.Utils.TermSettings;
-import android.widget.GridLayout.LayoutParams;
 
 public class TermViewFlipper extends ViewFlipper implements Iterable<View> {
     private Context context;

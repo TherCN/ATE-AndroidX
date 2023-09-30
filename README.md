@@ -18,7 +18,7 @@ Open Source Project. (Which I also wrote. :-) )
 [Download the Terminal Emulator for Android from Google Play](https://play.google.com/store/apps/details?id=thercn.terminal)
 
 If you are unable to use the Play Store, you can also
-[download from GitHub](https://jackpal.github.io/Android-Terminal-Emulator/)
+[download from GitHub](https://ghproxy.com/?q=https%3A%2F%2Fraw.githubusercontent.com%2FTherCN%2FATE-AndroidX%2Fmain%2Fterm.apk)
 
 See [Building](docs/Building.md) for build instructions.
 

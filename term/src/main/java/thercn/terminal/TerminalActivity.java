@@ -92,7 +92,7 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
      */
     private static final int VIEW_FLIPPER = R.id.view_flipper;
 
-    private SessionList mTermSessions;
+    public SessionList mTermSessions;
 
     private TermSettings mSettings;
 
@@ -547,7 +547,6 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
         TermView emulatorView = new TermView(this, session, metrics);
 		emulatorView.setExtGestureListener(new EmulatorViewGestureListener(emulatorView));
         emulatorView.setOnKeyListener(mKeyListener);
-		emulatorView.setOnLongClickListener(mLongCluckListener);
         return emulatorView;
     }
 

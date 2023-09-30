@@ -2,6 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="thercn.terminal"
+	android:sharedUserId="thercn.debug"
     android:versionName="1.0.70"
     android:versionCode="71">
 
