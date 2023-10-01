@@ -351,7 +351,6 @@ class TermKeyListener {
         } else {
             mAltKey.onRelease();
         }
-        updateCursorMode();
     }
 	
     public void handleControlKey(boolean down) {
@@ -650,7 +649,6 @@ class TermKeyListener {
 
     private void updateCursorMode() {
         mCursorMode = getCursorModeHelper(mCapKey, TextRenderer.MODE_SHIFT_SHIFT)
-                | getCursorModeHelper(mAltKey, TextRenderer.MODE_ALT_SHIFT)
                 | getCursorModeHelper(mControlKey, TextRenderer.MODE_CTRL_SHIFT)
                 | getCursorModeHelper(mFnKey, TextRenderer.MODE_FN_SHIFT);
     }

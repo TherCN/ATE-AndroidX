@@ -73,7 +73,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * hierarchy. The boolean tracks when we know what our size is.
      */
     private boolean mKnownSize;
-
+	private boolean mIsAltKeySent;
     // Set if initialization was deferred because a TermSession wasn't attached
     private boolean mDeferInit = false;
 
@@ -1413,6 +1413,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     }
 
 	public void sendAltKey(){
+		mIsAltKeySent = true;
         mKeyListener.handleAltKey(true);
 	}
     private boolean isSystemKey(int keyCode, KeyEvent event) {
