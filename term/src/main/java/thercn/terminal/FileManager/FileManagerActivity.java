@@ -4,16 +4,17 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import thercn.terminal.FileManager.FileAdapter;
-import thercn.terminal.R;
-import thercn.terminal.Widgets.ListView;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
+import thercn.terminal.FileManager.FileAdapter;
+import thercn.terminal.R;
+import thercn.terminal.Widgets.ListView;
 
 public class FileManagerActivity extends AppCompatActivity {
 
@@ -112,6 +113,7 @@ public class FileManagerActivity extends AppCompatActivity {
 			});
 		final FileAdapter<File> adapter = new FileAdapter<File>(this, files);
 		filelist2.setAdapter(adapter);
+		
 		filelist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long itemId) {
@@ -121,6 +123,7 @@ public class FileManagerActivity extends AppCompatActivity {
 					}
 				}
 			});
+		
 	}
 
 

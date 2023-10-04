@@ -18,8 +18,9 @@ import thercn.terminal.R;
 public class FileAdapter<T> extends ArrayAdapter {
 
 	File[] files;
-	public FileAdapter(Context context, @NonNull File[] files) {
+	public FileAdapter(Context context, File[] files) {
 		super(context, 0, files);
+		
 		this.files = files;
 
 	}
@@ -35,47 +36,56 @@ public class FileAdapter<T> extends ArrayAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder = null;
 		if (convertView == null) {
+			holder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.file_list, parent, false);
+			holder.fileIcon = convertView.findViewById(R.id.file_list_image);
+			holder.fileName = convertView.findViewById(R.id.file_list_name);
+			holder.fileTime = convertView.findViewById(R.id.file_list_time);
+			convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-		TextView fileName = convertView.findViewById(R.id.file_list_name);
-		ImageView fileIcon = convertView.findViewById(R.id.file_list_image);
-		fileName.setText(files[position].getName());
+		
+		holder.fileName.setText(files[position].getName());
 		if (files[position].isDirectory()) {
 			Bitmap fileImage = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.ic_folder);
-			fileIcon.setImageBitmap(fileImage);
+			holder.fileIcon.setImageBitmap(fileImage);
 		} else {
 			Bitmap fileImage = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.ic_file);
-			fileIcon.setImageBitmap(fileImage);
+			holder.fileIcon.setImageBitmap(fileImage);
 		}
-		TextView fileTime = convertView.findViewById(R.id.file_list_time);
-
+		
 		long lastModifiedTime = files[position].lastModified();
         Date lastModifiedDate = new Date(lastModifiedTime);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = dateFormat.format(lastModifiedDate);
 
 		String permission = "";
-		if (files[position].canRead())
-		{
+		if (files[position].canRead()) {
 			permission = permission + "r";
 		} else {
 			permission = permission + "-";
 		}
-		if (files[position].canWrite())
-		{
+		if (files[position].canWrite()) {
 			permission = permission + "w";
 		} else {
 			permission = permission + "-";
 		}
-		if (files[position].canExecute())
-		{
+		if (files[position].canExecute()) {
 			permission = permission + "x";
-		}else {
+		} else {
 			permission = permission + "-";
 		}
-		fileTime.setText(formattedDate + " " + permission);
+
+		holder.fileTime.setText(formattedDate + " " + permission);
 		return convertView;
+	}
+	class ViewHolder {
+		TextView fileName;
+		ImageView fileIcon;
+		TextView fileTime;
 	}
 
 }
