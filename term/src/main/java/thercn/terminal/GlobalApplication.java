@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.res.Resources;
@@ -22,6 +23,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -38,7 +40,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import thercn.terminal.ITerminal;
 
 public class GlobalApplication extends Application {
 
@@ -106,7 +107,7 @@ public class GlobalApplication extends Application {
         }
 
         public void registerGlobal(Context context) {
-            registerGlobal(context, null);
+            registerGlobal(context, "/sdcard/term_crash");
         }
 
         public void registerGlobal(Context context, String crashDir) {
@@ -146,13 +147,18 @@ public class GlobalApplication extends Application {
                     try {
                         Looper.loop();
                     } catch (final Throwable e) {
-                        e.printStackTrace();
+                        StackTraceElement[] trace = e.getStackTrace();
+						final StringBuilder error = new StringBuilder("ERROR:");
+						for (int i = 0; i < trace.length; i++) {
+							error.append(trace[i] + "\n");
+						}
                         if (isRunning.get()) {
                             MAIN_HANDLER.post(new Runnable(){
 
                                     @Override
                                     public void run() {
-                                        Toast.makeText(mContext, e.toString(), Toast.LENGTH_LONG).show();
+										Toast toast = Toast.makeText(mContext,error,1);
+										toast.show();
                                     }
                                 });
                         } else {

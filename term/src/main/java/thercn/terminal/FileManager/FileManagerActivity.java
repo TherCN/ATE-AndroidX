@@ -2,9 +2,10 @@ package thercn.terminal.FileManager;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,18 +33,18 @@ public class FileManagerActivity extends AppCompatActivity {
 		filelist1 = findViewById(R.id.filelist1);
 		filelist2 = findViewById(R.id.filelist2);
 		rightListParentDir = "/data/data/" + getPackageName();
-		inflateFileListLeft(getFiles(storageDir));
-		inflateFileListRight(getFiles(storageDir));
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+
 		inflateFileListLeft(getFiles(leftListParentDir));
 		inflateFileListRight(getFiles(rightListParentDir));
+		
 	}
 
-	
+
     public File[] getFiles(String path) {
 		Log.e("", path);
 
@@ -73,14 +74,14 @@ public class FileManagerActivity extends AppCompatActivity {
 
 				@Override
 				public void onClick(View view) {
-						Log.e("左列表", "当前目录:" + leftListParentDir);
-						leftListParentDir = new File(leftListParentDir).getParentFile().toString();  
-						try {
-							inflateFileListLeft(getFiles(leftListParentDir));
-						} catch (NullPointerException e) {
-							throw new NullPointerException("都tm在根目录了你还要跳转，傻逼");
-						}
+					Log.e("左列表", "当前目录:" + leftListParentDir);
+					leftListParentDir = new File(leftListParentDir).getParentFile().toString();  
+					try {
+						inflateFileListLeft(getFiles(leftListParentDir));
+					} catch (NullPointerException e) {
+						throw new NullPointerException("都tm在根目录了你还要跳转，傻逼");
 					}
+				}
 			});
 		final FileAdapter<File> adapter = new FileAdapter<File>(this, files);
 		filelist1.setAdapter(adapter);
@@ -96,7 +97,7 @@ public class FileManagerActivity extends AppCompatActivity {
 				}
 			});
 	}
-	
+
 	public void inflateFileListRight(File[] files) {
 		Button gotoParent = findViewById(R.id.gotoParent2);
 		gotoParent.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +114,7 @@ public class FileManagerActivity extends AppCompatActivity {
 			});
 		final FileAdapter<File> adapter = new FileAdapter<File>(this, files);
 		filelist2.setAdapter(adapter);
-		
+
 		filelist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long itemId) {
@@ -123,7 +124,7 @@ public class FileManagerActivity extends AppCompatActivity {
 					}
 				}
 			});
-		
+
 	}
 
 
