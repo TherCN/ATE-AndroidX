@@ -102,7 +102,7 @@ public class TermService extends Service implements TermSession.FinishCallback
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
 		Notification notification = new Notification.Builder(this)
 			.setSmallIcon(R.drawable.ic_stat_service_notification_icon)
-			.setContentTitle(getText(R.string.application_terminal))
+			.setContentTitle("Terminal Emulator")
 			.setContentText(getText(R.string.service_notify_text))
 			.setContentIntent(pendingIntent)
 			.setWhen(System.currentTimeMillis())

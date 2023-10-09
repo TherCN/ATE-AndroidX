@@ -1,6 +1,5 @@
 package thercn.terminal.FileManager;
 
-import android.annotation.NonNull;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

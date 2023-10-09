@@ -149,6 +149,7 @@ public class GlobalApplication extends Application {
                     } catch (final Throwable e) {
                         StackTraceElement[] trace = e.getStackTrace();
 						final StringBuilder error = new StringBuilder("ERROR:");
+						error.append(e.getMessage());
 						for (int i = 0; i < trace.length; i++) {
 							error.append(trace[i] + "\n");
 						}

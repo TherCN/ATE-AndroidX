@@ -1,6 +1,6 @@
 package thercn.terminal;
 
-import android.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Looper;
