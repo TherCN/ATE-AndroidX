@@ -2,26 +2,26 @@ package thercn.terminal.FileManager;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import thercn.terminal.FileManager.FileAdapter;
 import thercn.terminal.R;
-import thercn.terminal.Widgets.ListView;
 
 public class FileManagerActivity extends AppCompatActivity {
 
 	String storageDir = Environment.getExternalStorageDirectory().toString();
-	ListView filelist1;
-	ListView filelist2;
+	RecyclerView filelist1;
+	RecyclerView filelist2;
 	String leftListParentDir = storageDir;
 	String rightListParentDir;
 	@Override
@@ -32,20 +32,14 @@ public class FileManagerActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 		filelist1 = findViewById(R.id.filelist1);
 		filelist2 = findViewById(R.id.filelist2);
-		rightListParentDir = "/data/data/" + getPackageName();
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		inflateFileListLeft(getFiles(leftListParentDir));
-		inflateFileListRight(getFiles(rightListParentDir));
 		
+		inflateFileListLeft(storageDir);
+		rightListParentDir = "/data/data/" + getPackageName();
+		inflateFileListRight(rightListParentDir);
 	}
 
 
-    public File[] getFiles(String path) {
+    public static File[] getFiles(String path) {
 		Log.e("", path);
 
 		File[] files = new File(path).listFiles();
@@ -68,63 +62,32 @@ public class FileManagerActivity extends AppCompatActivity {
 		return files;
 	}
 
-	public void inflateFileListLeft(File[] files) {
-		Button gotoParent = findViewById(R.id.gotoParent1);
-		gotoParent.setOnClickListener(new View.OnClickListener() {
+	public void inflateFileListLeft(String path) {
+		
+		List<File> newFiles = new ArrayList<File>();
+		newFiles.add(new File(path).getParentFile());
+		File[] files = getFiles(path);
+		for (int i = 0; i < files.length; i++) {
+			newFiles.add(files[i]);
+		}
+		final FileAdapter<File> adapter = new FileAdapter<File>(this, newFiles,filelist1);
 
-				@Override
-				public void onClick(View view) {
-					Log.e("左列表", "当前目录:" + leftListParentDir);
-					leftListParentDir = new File(leftListParentDir).getParentFile().toString();  
-					try {
-						inflateFileListLeft(getFiles(leftListParentDir));
-					} catch (NullPointerException e) {
-						throw new NullPointerException("都tm在根目录了你还要跳转，傻逼");
-					}
-				}
-			});
-		final FileAdapter<File> adapter = new FileAdapter<File>(this, files);
 		filelist1.setAdapter(adapter);
-		filelist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view, int position, long itemId) {
-					if (new File(adapter.getItem(position).toString()).isDirectory()) {
-						Log.e("列表1", leftListParentDir);
-						leftListParentDir = adapter.getItem(position).toString();
-						inflateFileListLeft(getFiles(adapter.getItem(position).toString()));
-					}
-				}
-			});
+		filelist1.setLayoutManager(new LinearLayoutManager(this));
 	}
 
-	public void inflateFileListRight(File[] files) {
-		Button gotoParent = findViewById(R.id.gotoParent2);
-		gotoParent.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					Log.e("右列表", "当前目录:" + rightListParentDir);
-					rightListParentDir = new File(rightListParentDir).getParentFile().toString();
-					try {
-						inflateFileListRight(getFiles(rightListParentDir));
-					} catch (NullPointerException e) {
-						throw new NullPointerException("都tm在根目录了你还要跳转，傻逼");
-					}
-				}
-			});
-		final FileAdapter<File> adapter = new FileAdapter<File>(this, files);
+	public void inflateFileListRight(String path) {
+		
+		List<File> newFiles = new ArrayList<File>();
+		newFiles.add(new File(path).getParentFile());
+		File[] files = getFiles(path);
+		for (int i = 0; i < files.length; i++) {
+			newFiles.add(files[i]);
+		}
+		final FileAdapter<File> adapter = new FileAdapter<File>(this, newFiles,filelist2);
+
 		filelist2.setAdapter(adapter);
-
-		filelist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view, int position, long itemId) {
-					if (new File(adapter.getItem(position).toString()).isDirectory()) {
-						rightListParentDir = adapter.getItem(position).toString();
-						inflateFileListRight(getFiles(adapter.getItem(position).toString()));
-					}
-				}
-			});
-
+		filelist2.setLayoutManager(new LinearLayoutManager(this));
 	}
 
 

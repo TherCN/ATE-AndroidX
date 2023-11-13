@@ -55,6 +55,8 @@ public class TermView extends EmulatorView {
 					return false;
 				}
 			});
+		
+		
     }
 	
 	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {

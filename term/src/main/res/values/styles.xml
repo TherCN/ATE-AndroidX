@@ -20,11 +20,7 @@ limitations under the License.
 <resources>
 	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">@color/colorPrimary</item>
 		<!-- <item name="android:windowIsTranslucent">true</item> -->
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-		<item name="android:textColorPrimary">@color/colorTextIndigo</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
