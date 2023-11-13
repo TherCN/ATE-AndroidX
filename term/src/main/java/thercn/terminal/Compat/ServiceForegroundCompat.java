@@ -17,13 +17,13 @@
 
 package thercn.terminal.Compat;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
-import android.app.Service;
-import android.util.Log;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.Service;
 import android.content.Context;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import thercn.terminal.Log;
 
 /* Provide startForeground() and stopForeground() compatibility, using the
    current interfaces where available and the deprecated setForeground()
@@ -50,11 +50,11 @@ public class ServiceForegroundCompat {
             method.invoke(receiver, args);
         } catch (IllegalAccessException e) {
             // Shouldn't happen, but we have to catch this
-            Log.w("ServiceCompat", "Unable to invoke method", e);
+            Log.e("ServiceCompat", "Unable to invoke method", e);
         } catch (InvocationTargetException e) {
             /* The methods we call don't throw exceptions -- in general,
                we should throw e.getCause() */
-            Log.w("ServiceCompat", "Method threw exception", e.getCause());
+            Log.e("ServiceCompat", "Method throw exception", e.getCause());
         }
     }
 

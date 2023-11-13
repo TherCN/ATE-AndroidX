@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 
-import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import static jackpal.androidterm.emulatorview.compat.KeycodeConstants.*;

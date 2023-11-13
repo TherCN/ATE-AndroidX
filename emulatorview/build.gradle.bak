@@ -24,4 +24,5 @@ repositories {
     }
 }
 dependencies {
+	implementation project(':term')
 }

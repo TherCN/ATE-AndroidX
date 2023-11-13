@@ -21,7 +21,6 @@ import thercn.terminal.Utils.ShortcutEncryption;
 import java.security.GeneralSecurityException;
 
 import android.content.Intent;
-import android.util.Log;
 
 public final class RunShortcut extends RemoteInterface {
     public static final String ACTION_RUN_SHORTCUT = "thercn.terminal.RUN_SHORTCUT";

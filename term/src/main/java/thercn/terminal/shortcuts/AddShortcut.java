@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -20,15 +19,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import java.io.File;
+import java.security.GeneralSecurityException;
 import thercn.terminal.Compat.AlertDialogCompat;
 import thercn.terminal.Compat.PRNGFixes;
+import thercn.terminal.Log;
 import thercn.terminal.R;
 import thercn.terminal.RemoteInterface;
 import thercn.terminal.RunShortcut;
 import thercn.terminal.TermDebug;
 import thercn.terminal.Utils.ShortcutEncryption;
-import java.io.File;
-import java.security.GeneralSecurityException;
 
 public class      AddShortcut
        extends    android.app.Activity

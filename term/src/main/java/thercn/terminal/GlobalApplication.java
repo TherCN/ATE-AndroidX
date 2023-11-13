@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -243,7 +242,7 @@ public class GlobalApplication extends Application {
                 }
 
                 builder.append("\n\n");
-                builder.append(Log.getStackTraceString(throwable));
+                builder.append(Log.getExceptionInfo(throwable));
 
                 return builder.toString(); 
             }

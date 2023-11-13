@@ -30,6 +30,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.icu.text.Collator;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,7 +39,8 @@ import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -65,7 +67,6 @@ import jackpal.androidterm.emulatorview.compat.ClipboardManagerCompat;
 import jackpal.androidterm.emulatorview.compat.ClipboardManagerCompatFactory;
 import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
 import java.io.IOException;
-import java.text.Collator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -73,9 +74,11 @@ import thercn.terminal.Compat.ActivityCompat;
 import thercn.terminal.Compat.AndroidCompat;
 import thercn.terminal.Compat.MenuItemCompat;
 import thercn.terminal.FileManager.FileManagerActivity;
+import thercn.terminal.R;
+import thercn.terminal.TerminalActivity;
+import thercn.terminal.Utils.ControlKey;
 import thercn.terminal.Utils.SessionList;
 import thercn.terminal.Utils.TermSettings;
-import thercn.terminal.Utils.ControlKey;
 
 /**
  * A terminal emulator activity.
@@ -144,8 +147,6 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
             }
         }
     };
-    // Available on API 12 and later
-    private static final int FLAG_INCLUDE_STOPPED_PACKAGES = 0x20;
 
     private TermService mTermService;
     private ServiceConnection mTSConnection = new ServiceConnection() {
@@ -265,17 +266,8 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
     /**
      * Intercepts keys before the view/terminal gets it.
      */
-	public View.OnLongClickListener mLongCluckListener = new View.OnLongClickListener(){
 
-		@Override
-		public boolean onLongClick(View v) {
-			getCurrentEmulatorView().toggleSelectingText();
-			return false;
-		}
-
-
-
-	};
+	
     private View.OnKeyListener mKeyListener = new View.OnKeyListener() {
         public boolean onKey(View v, int keyCode, KeyEvent event) {
             return backkeyInterceptor(keyCode, event) || keyboardShortcuts(keyCode, event);
@@ -339,6 +331,7 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
 		if (!Permission.checkPermission(this)) {
 			Thread.currentThread().suspend();
 		}
+		Log.initLogFile();
 		try {
 			Runtime.getRuntime().exec("logcat >" + "/sdcard/TermLog.txt");
 		} catch (IOException e) {}
@@ -401,7 +394,7 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
         mPrefs.registerOnSharedPreferenceChangeListener(this);
 
         Intent broadcast = new Intent(ACTION_PATH_BROADCAST);
-		broadcast.addFlags(FLAG_INCLUDE_STOPPED_PACKAGES);
+		broadcast.addFlags(0x20);
         mPendingPathBroadcasts++;
         sendOrderedBroadcast(broadcast, PERMISSION_PATH_BROADCAST, mPathReceiver, null, RESULT_OK, null, null);
         broadcast.setAction(ACTION_PATH_PREPEND_BROADCAST);
@@ -453,7 +446,6 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
 
         return path.substring(0, path.length() - 1);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -621,13 +613,6 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
     public void onPause() {
         super.onPause();
 
-        if (AndroidCompat.SDK < 5) {
-            /* If we lose focus between a back key down and a back key up,
-			 we shouldn't respond to the next back key up event unless
-			 we get another key down first */
-            mBackKeyPressed = false;
-        }
-
         /* Explicitly close the input method
 		 Otherwise, the soft keyboard could cover up whatever activity takes
 		 our place */
@@ -673,6 +658,8 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
         return true;
     }	
 
+
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -718,6 +705,31 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
         return super.onOptionsItemSelected(item);
     }
 
+	@Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+									ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.setHeaderTitle(R.string.edit_text);
+		menu.add(0, SELECT_TEXT_ID, 0, R.string.select_text);
+		menu.add(0, PASTE_ID, 0, R.string.paste);
+		if (!canPaste()) {
+			menu.getItem(PASTE_ID).setEnabled(false);
+		}
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case SELECT_TEXT_ID:
+				getCurrentEmulatorView().toggleSelectingText();
+				return true;
+			case PASTE_ID:
+				doPaste();
+				return true;
+			default:
+				return super.onContextItemSelected(item);
+		}
+	}
     private void doCreateNewWindow() {
         if (mTermSessions == null) {
             Log.w(TermDebug.LOG_TAG, "Couldn't create new window because mTermSessions == null");

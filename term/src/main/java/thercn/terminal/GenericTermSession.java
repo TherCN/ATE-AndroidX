@@ -18,7 +18,6 @@ package thercn.terminal;
 
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
 import jackpal.androidterm.emulatorview.ColorScheme;
 import jackpal.androidterm.emulatorview.TermSession;
 import jackpal.androidterm.emulatorview.UpdateCallback;

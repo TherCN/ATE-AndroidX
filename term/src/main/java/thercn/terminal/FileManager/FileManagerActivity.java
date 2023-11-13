@@ -2,9 +2,6 @@ package thercn.terminal.FileManager;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import thercn.terminal.FileManager.FileAdapter;
+import thercn.terminal.Log;
 import thercn.terminal.R;
 
 public class FileManagerActivity extends AppCompatActivity {

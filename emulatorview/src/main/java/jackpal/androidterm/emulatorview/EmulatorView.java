@@ -16,15 +16,6 @@
 
 package jackpal.androidterm.emulatorview;
 
-import jackpal.androidterm.emulatorview.compat.ClipboardManagerCompat;
-import jackpal.androidterm.emulatorview.compat.ClipboardManagerCompatFactory;
-import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
-import jackpal.androidterm.emulatorview.compat.Patterns;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Hashtable;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -38,7 +29,6 @@ import android.text.util.Linkify;
 import android.text.util.Linkify.MatchFilter;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -51,6 +41,13 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.widget.Scroller;
+import jackpal.androidterm.emulatorview.compat.ClipboardManagerCompat;
+import jackpal.androidterm.emulatorview.compat.ClipboardManagerCompatFactory;
+import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
+import jackpal.androidterm.emulatorview.compat.Patterns;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Hashtable;
 
 /**
  * A view on a {@link TermSession}.  Displays the terminal emulator's screen,

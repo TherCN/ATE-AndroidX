@@ -17,7 +17,6 @@
 package thercn.terminal;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileDescriptor;

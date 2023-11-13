@@ -108,7 +108,8 @@ public class TermService extends Service implements TermSession.FinishCallback
 			.setWhen(System.currentTimeMillis())
 			.setOngoing(true) // 设置通知为正在进行的事件
 			.build();
-        compat.startForeground(RUNNING_NOTIFICATION, notification);
+	
+        //compat.startForeground(RUNNING_NOTIFICATION, notification);
 
         Log.d(TermDebug.LOG_TAG, "TermService started");
         return;
