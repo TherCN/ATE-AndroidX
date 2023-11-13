@@ -23,7 +23,7 @@ import java.io.File;
 import java.security.GeneralSecurityException;
 import thercn.terminal.Compat.AlertDialogCompat;
 import thercn.terminal.Compat.PRNGFixes;
-import thercn.terminal.Log;
+import thercn.terminal.TLog;
 import thercn.terminal.R;
 import thercn.terminal.RemoteInterface;
 import thercn.terminal.RunShortcut;
@@ -233,7 +233,7 @@ public class      AddShortcut
         }
         catch (GeneralSecurityException e)
         {
-          Log.e(TermDebug.LOG_TAG, "Generating shortcut encryption keys failed: " + e.toString());
+          TLog.e(TermDebug.LOG_TAG, "Generating shortcut encryption keys failed: " + e.toString());
           throw new RuntimeException(e);
         }
         ShortcutEncryption.saveKeys(context, keys);
@@ -249,7 +249,7 @@ public class      AddShortcut
       }
       catch (GeneralSecurityException e)
       {
-        Log.e(TermDebug.LOG_TAG, "Shortcut encryption failed: " + e.toString());
+        TLog.e(TermDebug.LOG_TAG, "Shortcut encryption failed: " + e.toString());
         throw new RuntimeException(e);
       }
       Intent target=  new Intent().setClass(context, RunShortcut.class);

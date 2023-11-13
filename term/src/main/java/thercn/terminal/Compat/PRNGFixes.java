@@ -36,7 +36,7 @@ import java.security.SecureRandom;
 import java.security.SecureRandomSpi;
 import java.security.Security;
 import thercn.terminal.Compat.PRNGFixes;
-import thercn.terminal.Log;
+import thercn.terminal.TLog;
 
 /**
  * Fixes for the output of the default PRNG having low entropy.
@@ -226,7 +226,7 @@ public final class PRNGFixes {
             } catch (IOException e) {
                 // On a small fraction of devices /dev/urandom is not writable.
                 // Log and ignore.
-                Log.w(PRNGFixes.class.getSimpleName(),
+                TLog.w(PRNGFixes.class.getSimpleName(),
                         "Failed to mix seed into " + URANDOM_FILE);
             } finally {
                 mSeeded = true;

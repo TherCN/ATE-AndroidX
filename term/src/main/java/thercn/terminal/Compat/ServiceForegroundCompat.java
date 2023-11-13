@@ -23,7 +23,7 @@ import android.app.Service;
 import android.content.Context;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import thercn.terminal.Log;
+import thercn.terminal.TLog;
 
 /* Provide startForeground() and stopForeground() compatibility, using the
    current interfaces where available and the deprecated setForeground()
@@ -50,11 +50,11 @@ public class ServiceForegroundCompat {
             method.invoke(receiver, args);
         } catch (IllegalAccessException e) {
             // Shouldn't happen, but we have to catch this
-            Log.e("ServiceCompat", "Unable to invoke method", e);
+            TLog.e("ServiceCompat", "Unable to invoke method", e);
         } catch (InvocationTargetException e) {
             /* The methods we call don't throw exceptions -- in general,
                we should throw e.getCause() */
-            Log.e("ServiceCompat", "Method throw exception", e.getCause());
+            TLog.e("ServiceCompat", "Method throw exception", e.getCause());
         }
     }
 

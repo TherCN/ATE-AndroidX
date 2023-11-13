@@ -106,7 +106,7 @@ public class WindowList extends ListActivity {
 
         Intent TSIntent = new Intent(this, TermService.class);
         if (!bindService(TSIntent, mTSConnection, BIND_AUTO_CREATE)) {
-            Log.w(TermDebug.LOG_TAG, "bind to service failed!");
+            TLog.w(TermDebug.LOG_TAG, "bind to service failed!");
         }
     }
 

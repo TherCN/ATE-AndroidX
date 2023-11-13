@@ -180,7 +180,7 @@ class TermKeyListener {
 
     public void setCursorKeysApplicationMode(boolean val) {
         if (LOG_MISC) {
-            Log.d(EmulatorDebug.LOG_TAG, "CursorKeysApplicationMode=" + val);
+            TLog.d(EmulatorDebug.LOG_TAG, "CursorKeysApplicationMode=" + val);
         }
         if (val) {
             mKeyCodes[KEYCODE_NUMPAD_8] = mKeyCodes[KEYCODE_DPAD_UP] = "\033OA";
@@ -519,7 +519,7 @@ class TermKeyListener {
     public void keyDown(int keyCode, KeyEvent event, boolean appMode,
             boolean allowToggle) throws IOException {
         if (LOG_KEYS) {
-            Log.i(TAG, "keyDown(" + keyCode + "," + event + "," + appMode + "," + allowToggle + ")");
+            TLog.i(TAG, "keyDown(" + keyCode + "," + event + "," + appMode + "," + allowToggle + ")");
         }
         if (handleKeyCode(keyCode, event, appMode)) {
             return;
@@ -605,7 +605,7 @@ class TermKeyListener {
 
             if ((result & KeyCharacterMap.COMBINING_ACCENT) != 0) {
                 if (LOG_COMBINING_ACCENT) {
-                    Log.i(TAG, "Got combining accent " + result);
+                    TLog.i(TAG, "Got combining accent " + result);
                 }
                 mCombiningAccent = result & KeyCharacterMap.COMBINING_ACCENT_MASK;
                 return;
@@ -614,7 +614,7 @@ class TermKeyListener {
                 int unaccentedChar = result;
                 result = KeyCharacterMap.getDeadChar(mCombiningAccent, unaccentedChar);
                 if (LOG_COMBINING_ACCENT) {
-                    Log.i(TAG, "getDeadChar(" + mCombiningAccent + ", " + unaccentedChar + ") -> " + result);
+                    TLog.i(TAG, "getDeadChar(" + mCombiningAccent + ", " + unaccentedChar + ") -> " + result);
                 }
                 mCombiningAccent = 0;
             }
@@ -701,7 +701,7 @@ class TermKeyListener {
         if (code != null) {
             if (EmulatorDebug.LOG_CHARACTERS_FLAG) {
                 byte[] bytes = code.getBytes();
-                Log.d(EmulatorDebug.LOG_TAG, "Out: '" + EmulatorDebug.bytesToString(bytes, 0, bytes.length) + "'");
+                TLog.d(EmulatorDebug.LOG_TAG, "Out: '" + EmulatorDebug.bytesToString(bytes, 0, bytes.length) + "'");
             }
             mTermSession.write(code);
             return true;

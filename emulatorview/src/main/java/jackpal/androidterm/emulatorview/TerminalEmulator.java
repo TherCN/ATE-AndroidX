@@ -663,7 +663,7 @@ class TerminalEmulator {
      */
     public void append(byte[] buffer, int base, int length) {
         if (EmulatorDebug.LOG_CHARACTERS_FLAG) {
-            Log.d(EmulatorDebug.LOG_TAG, "In: '" + EmulatorDebug.bytesToString(buffer, base, length) + "'");
+            TLog.d(EmulatorDebug.LOG_TAG, "In: '" + EmulatorDebug.bytesToString(buffer, base, length) + "'");
         }
         for (int i = 0; i < length; i++) {
             byte b = buffer[base + i];
@@ -671,7 +671,7 @@ class TerminalEmulator {
                 process(b);
                 mProcessedCharCount++;
             } catch (Exception e) {
-                Log.e(EmulatorDebug.LOG_TAG, "Exception while processing character "
+                TLog.e(EmulatorDebug.LOG_TAG, "Exception while processing character "
                         + Integer.toString(mProcessedCharCount) + " code "
                         + Integer.toString(b), e);
             }
@@ -1467,7 +1467,7 @@ class TerminalEmulator {
                 mBackColor = code - 100 + 8;
             } else {
                 if (EmulatorDebug.LOG_UNKNOWN_ESCAPE_SEQUENCES) {
-                    Log.w(EmulatorDebug.LOG_TAG, String.format("SGR unknown code %d", code));
+                    TLog.w(EmulatorDebug.LOG_TAG, String.format("SGR unknown code %d", code));
                 }
             }
         }
@@ -1477,7 +1477,7 @@ class TerminalEmulator {
         boolean result = isValidColor(color);
         if (!result) {
             if (EmulatorDebug.LOG_UNKNOWN_ESCAPE_SEQUENCES) {
-                Log.w(EmulatorDebug.LOG_TAG,
+                TLog.w(EmulatorDebug.LOG_TAG,
                         String.format("Invalid color %d", color));
             }
         }
@@ -1783,7 +1783,7 @@ class TerminalEmulator {
 
     private void logError(String error) {
         if (EmulatorDebug.LOG_UNKNOWN_ESCAPE_SEQUENCES) {
-            Log.e(EmulatorDebug.LOG_TAG, error);
+            TLog.e(EmulatorDebug.LOG_TAG, error);
         }
         finishSequence();
     }

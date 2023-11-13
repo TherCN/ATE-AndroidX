@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import thercn.terminal.Log;
+import thercn.terminal.TLog;
 import thercn.terminal.R;
 
 public class FileAdapter<T> extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
@@ -32,7 +32,7 @@ public class FileAdapter<T> extends RecyclerView.Adapter<FileAdapter.ViewHolder>
 	public File getParentDir() {
 		
 		if (files != null) {
-			Log.e("","当前get目录:"+parentDir.toString());
+			TLog.e("","当前get目录:"+parentDir.toString());
 			return parentDir;
 		}
 		return null;
@@ -53,7 +53,7 @@ public class FileAdapter<T> extends RecyclerView.Adapter<FileAdapter.ViewHolder>
     public void onBindViewHolder(FileAdapter.ViewHolder holder, int position) {
 
         final File selectedFile = files.get(position);
-		Log.e("","已添加:" + selectedFile.getAbsolutePath() +",位置:" + position);
+		TLog.e("","已添加:" + selectedFile.getAbsolutePath() +",位置:" + position);
 		if (position == 0) {
 			holder.fileName.setText("..");
 		} else {
@@ -97,7 +97,7 @@ public class FileAdapter<T> extends RecyclerView.Adapter<FileAdapter.ViewHolder>
 				public void onClick(View v) {
 					if (selectedFile.isDirectory()) {
 						parentDir = selectedFile.getParentFile();
-						Log.e("","当前父目录:"+parentDir.toString());
+						TLog.e("","当前父目录:"+parentDir.toString());
 						List<File> newFiles = new ArrayList<File>();
 						newFiles.add(selectedFile.getParentFile());
 						File[] newDir = FileManagerActivity.getFiles(selectedFile.getAbsolutePath());

@@ -658,7 +658,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
                         }
                     }
                 } catch (IOException e) {
-                    Log.e(TAG, "error writing ", e);
+                    TLog.e(TAG, "error writing ", e);
                 }
             }
 
@@ -674,7 +674,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean beginBatchEdit() {
                 if (LOG_IME) {
-                    Log.w(TAG, "beginBatchEdit");
+                    TLog.w(TAG, "beginBatchEdit");
                 }
                 setImeBuffer("");
                 mCursor = 0;
@@ -685,28 +685,28 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean clearMetaKeyStates(int arg0) {
                 if (LOG_IME) {
-                    Log.w(TAG, "clearMetaKeyStates " + arg0);
+                    TLog.w(TAG, "clearMetaKeyStates " + arg0);
                 }
                 return false;
             }
 
             public boolean commitCompletion(CompletionInfo arg0) {
                 if (LOG_IME) {
-                    Log.w(TAG, "commitCompletion " + arg0);
+                    TLog.w(TAG, "commitCompletion " + arg0);
                 }
                 return false;
             }
 
             public boolean endBatchEdit() {
                 if (LOG_IME) {
-                    Log.w(TAG, "endBatchEdit");
+                    TLog.w(TAG, "endBatchEdit");
                 }
                 return true;
             }
 
             public boolean finishComposingText() {
                 if (LOG_IME) {
-                    Log.w(TAG, "finishComposingText");
+                    TLog.w(TAG, "finishComposingText");
                 }
                 sendText(mImeBuffer);
                 setImeBuffer("");
@@ -718,7 +718,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public int getCursorCapsMode(int reqModes) {
                 if (LOG_IME) {
-                    Log.w(TAG, "getCursorCapsMode(" + reqModes + ")");
+                    TLog.w(TAG, "getCursorCapsMode(" + reqModes + ")");
                 }
                 int mode = 0;
                 if ((reqModes & TextUtils.CAP_MODE_CHARACTERS) != 0) {
@@ -730,14 +730,14 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             public ExtractedText getExtractedText(ExtractedTextRequest arg0,
                     int arg1) {
                 if (LOG_IME) {
-                    Log.w(TAG, "getExtractedText" + arg0 + "," + arg1);
+                    TLog.w(TAG, "getExtractedText" + arg0 + "," + arg1);
                 }
                 return null;
             }
 
             public CharSequence getTextAfterCursor(int n, int flags) {
                 if (LOG_IME) {
-                    Log.w(TAG, "getTextAfterCursor(" + n + "," + flags + ")");
+                    TLog.w(TAG, "getTextAfterCursor(" + n + "," + flags + ")");
                 }
                 int len = Math.min(n, mImeBuffer.length() - mCursor);
                 if (len <= 0 || mCursor < 0 || mCursor >= mImeBuffer.length()) {
@@ -748,7 +748,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public CharSequence getTextBeforeCursor(int n, int flags) {
                 if (LOG_IME) {
-                    Log.w(TAG, "getTextBeforeCursor(" + n + "," + flags + ")");
+                    TLog.w(TAG, "getTextBeforeCursor(" + n + "," + flags + ")");
                 }
                 int len = Math.min(n, mCursor);
                 if (len <= 0 || mCursor < 0 || mCursor >= mImeBuffer.length()) {
@@ -759,35 +759,35 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean performContextMenuAction(int arg0) {
                 if (LOG_IME) {
-                    Log.w(TAG, "performContextMenuAction" + arg0);
+                    TLog.w(TAG, "performContextMenuAction" + arg0);
                 }
                 return true;
             }
 
             public boolean performPrivateCommand(String arg0, Bundle arg1) {
                 if (LOG_IME) {
-                    Log.w(TAG, "performPrivateCommand" + arg0 + "," + arg1);
+                    TLog.w(TAG, "performPrivateCommand" + arg0 + "," + arg1);
                 }
                 return true;
             }
 
             public boolean reportFullscreenMode(boolean arg0) {
                 if (LOG_IME) {
-                    Log.w(TAG, "reportFullscreenMode" + arg0);
+                    TLog.w(TAG, "reportFullscreenMode" + arg0);
                 }
                 return true;
             }
 
             public boolean commitCorrection (CorrectionInfo correctionInfo) {
                 if (LOG_IME) {
-                    Log.w(TAG, "commitCorrection");
+                    TLog.w(TAG, "commitCorrection");
                 }
                 return true;
             }
 
             public boolean commitText(CharSequence text, int newCursorPosition) {
                 if (LOG_IME) {
-                    Log.w(TAG, "commitText(\"" + text + "\", " + newCursorPosition + ")");
+                    TLog.w(TAG, "commitText(\"" + text + "\", " + newCursorPosition + ")");
                 }
                 clearComposingText();
                 sendText(text);
@@ -816,7 +816,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean deleteSurroundingText(int leftLength, int rightLength) {
                 if (LOG_IME) {
-                    Log.w(TAG, "deleteSurroundingText(" + leftLength +
+                    TLog.w(TAG, "deleteSurroundingText(" + leftLength +
                             "," + rightLength + ")");
                 }
                 if (leftLength > 0) {
@@ -835,7 +835,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean performEditorAction(int actionCode) {
                 if (LOG_IME) {
-                    Log.w(TAG, "performEditorAction(" + actionCode + ")");
+                    TLog.w(TAG, "performEditorAction(" + actionCode + ")");
                 }
                 if (actionCode == EditorInfo.IME_ACTION_UNSPECIFIED) {
                     // The "return" key has been pressed on the IME.
@@ -846,7 +846,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean sendKeyEvent(KeyEvent event) {
                 if (LOG_IME) {
-                    Log.w(TAG, "sendKeyEvent(" + event + ")");
+                    TLog.w(TAG, "sendKeyEvent(" + event + ")");
                 }
                 // Some keys are sent here rather than to commitText.
                 // In particular, del and the digit keys are sent here.
@@ -858,7 +858,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean setComposingText(CharSequence text, int newCursorPosition) {
                 if (LOG_IME) {
-                    Log.w(TAG, "setComposingText(\"" + text + "\", " + newCursorPosition + ")");
+                    TLog.w(TAG, "setComposingText(\"" + text + "\", " + newCursorPosition + ")");
                 }
                 int len = mImeBuffer.length();
                 if (mComposingTextStart > len || mComposingTextEnd > len) {
@@ -874,7 +874,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean setSelection(int start, int end) {
                 if (LOG_IME) {
-                    Log.w(TAG, "setSelection" + start + "," + end);
+                    TLog.w(TAG, "setSelection" + start + "," + end);
                 }
                 int length = mImeBuffer.length();
                 if (start == end && start > 0 && start < length) {
@@ -890,7 +890,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public boolean setComposingRegion(int start, int end) {
                 if (LOG_IME) {
-                    Log.w(TAG, "setComposingRegion " + start + "," + end);
+                    TLog.w(TAG, "setComposingRegion " + start + "," + end);
                 }
                 if (start < end && start > 0 && end < mImeBuffer.length()) {
                     clearComposingText();
@@ -902,7 +902,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
 
             public CharSequence getSelectedText(int flags) {
                 if (LOG_IME) {
-                    Log.w(TAG, "getSelectedText " + flags);
+                    TLog.w(TAG, "getSelectedText " + flags);
                 }
                 int len = mImeBuffer.length();
                 if (mSelectedTextEnd >= len || mSelectedTextStart > mSelectedTextEnd) {
@@ -1098,7 +1098,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
             x > 255-32 || y > 255-32;
         //Log.d(TAG, "mouse button "+x+","+y+","+button_code+",oob="+out_of_bounds);
         if(button_code < 0 || button_code > 255-32) {
-            Log.e(TAG, "mouse button_code out of range: "+button_code);
+            TLog.e(TAG, "mouse button_code out of range: "+button_code);
             return;
         }
         if(!out_of_bounds) {
@@ -1275,7 +1275,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (LOG_KEY_EVENTS) {
-            Log.w(TAG, "onKeyDown " + keyCode);
+            TLog.w(TAG, "onKeyDown " + keyCode);
         }
         if (handleControlKey(keyCode, true)) {
             return true;
@@ -1320,7 +1320,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (LOG_KEY_EVENTS) {
-            Log.w(TAG, "onKeyUp " + keyCode);
+            TLog.w(TAG, "onKeyUp " + keyCode);
         }
         if (handleControlKey(keyCode, false)) {
             return true;
@@ -1374,7 +1374,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     private boolean handleControlKey(int keyCode, boolean down) {
         if (keyCode == mControlKeyCode) {
             if (LOG_KEY_EVENTS) {
-                Log.w(TAG, "handleControlKey " + keyCode);
+                TLog.w(TAG, "handleControlKey " + keyCode);
             }
             mKeyListener.handleControlKey(down);
             invalidate();
@@ -1387,7 +1387,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         if (keyCode == KeycodeConstants.KEYCODE_CTRL_LEFT ||
             keyCode == KeycodeConstants.KEYCODE_CTRL_RIGHT) {
             if (LOG_KEY_EVENTS) {
-                Log.w(TAG, "handleHardwareControlKey " + keyCode);
+                TLog.w(TAG, "handleHardwareControlKey " + keyCode);
             }
             boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
             mKeyListener.handleHardwareControlKey(down);
@@ -1400,7 +1400,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     private boolean handleFnKey(int keyCode, boolean down) {
         if (keyCode == mFnKeyCode) {
             if (LOG_KEY_EVENTS) {
-                Log.w(TAG, "handleFnKey " + keyCode);
+                TLog.w(TAG, "handleFnKey " + keyCode);
             }
             mKeyListener.handleFnKey(down);
             invalidate();

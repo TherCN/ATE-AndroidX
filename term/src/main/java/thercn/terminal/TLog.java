@@ -1,11 +1,12 @@
 package thercn.terminal;
+
 import android.util.Log;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-public class Log {
+public class TLog {
 	 
 	static File logFile = new File("/sdcard/TerminalLog.txt");
 	public static void initLogFile() {

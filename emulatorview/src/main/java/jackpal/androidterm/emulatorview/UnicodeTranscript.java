@@ -104,7 +104,7 @@ class UnicodeTranscript {
         if (extRow < -mActiveTranscriptRows || extRow > mScreenRows) {
             String errorMessage = "externalToInternalRow "+ extRow +
                 " " + mScreenRows + " " + mActiveTranscriptRows;
-            Log.e(TAG, errorMessage);
+            TLog.e(TAG, errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
 
@@ -468,7 +468,7 @@ class UnicodeTranscript {
      */
     public void blockSet(int sx, int sy, int w, int h, int val, int style) {
         if (sx < 0 || sx + w > mColumns || sy < 0 || sy + h > mScreenRows) {
-            Log.e(TAG, "illegal arguments! " + sx + " " + sy + " " + w + " " + h + " " + val + " " + mColumns + " " + mScreenRows);
+            TLog.e(TAG, "illegal arguments! " + sx + " " + sy + " " + w + " " + h + " " + val + " " + mColumns + " " + mScreenRows);
             throw new IllegalArgumentException();
         }
 
@@ -811,7 +811,7 @@ class UnicodeTranscript {
 
     public boolean setChar(int column, int row, int codePoint) {
         if (row >= mScreenRows || column >= mColumns) {
-            Log.e(TAG, "illegal arguments! " + row + " " + column + " " + mScreenRows + " " + mColumns);
+            TLog.e(TAG, "illegal arguments! " + row + " " + column + " " + mScreenRows + " " + mColumns);
             throw new IllegalArgumentException();
         }
         row = externalToInternalRow(row);

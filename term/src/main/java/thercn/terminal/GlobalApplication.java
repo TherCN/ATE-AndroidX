@@ -242,7 +242,7 @@ public class GlobalApplication extends Application {
                 }
 
                 builder.append("\n\n");
-                builder.append(Log.getExceptionInfo(throwable));
+                builder.append(TLog.getExceptionInfo(throwable));
 
                 return builder.toString(); 
             }

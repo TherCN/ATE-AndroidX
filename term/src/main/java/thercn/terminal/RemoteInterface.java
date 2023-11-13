@@ -67,7 +67,7 @@ public class RemoteInterface extends Activity {
         mTSIntent = TSIntent;
         startService(TSIntent);
         if (!bindService(TSIntent, mTSConnection, BIND_AUTO_CREATE)) {
-            Log.e(TermDebug.LOG_TAG, "bind to service failed!");
+            TLog.e(TermDebug.LOG_TAG, "bind to service failed!");
             finish();
         }
     }

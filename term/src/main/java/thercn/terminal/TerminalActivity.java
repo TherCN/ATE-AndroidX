@@ -151,7 +151,7 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
     private TermService mTermService;
     private ServiceConnection mTSConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
-            Log.i(TermDebug.LOG_TAG, "Bound to TermService");
+            TLog.i(TermDebug.LOG_TAG, "Bound to TermService");
             TermService.TSBinder binder = (TermService.TSBinder) service;
             mTermService = binder.getService();
             if (mPendingPathBroadcasts <= 0) {
@@ -331,11 +331,11 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
 		if (!Permission.checkPermission(this)) {
 			Thread.currentThread().suspend();
 		}
-		Log.initLogFile();
+		TLog.initLogFile();
 		try {
 			Runtime.getRuntime().exec("logcat >" + "/sdcard/TermLog.txt");
 		} catch (IOException e) {}
-        Log.e(TermDebug.LOG_TAG, "onCreate");
+        TLog.e(TermDebug.LOG_TAG, "onCreate");
 		InitTerminal();
     }
 
@@ -732,7 +732,7 @@ public class TerminalActivity extends AppCompatActivity implements UpdateCallbac
 	}
     private void doCreateNewWindow() {
         if (mTermSessions == null) {
-            Log.w(TermDebug.LOG_TAG, "Couldn't create new window because mTermSessions == null");
+            TLog.w(TermDebug.LOG_TAG, "Couldn't create new window because mTermSessions == null");
             return;
         }
 

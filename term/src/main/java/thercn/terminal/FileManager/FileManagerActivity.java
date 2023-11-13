@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import thercn.terminal.FileManager.FileAdapter;
-import thercn.terminal.Log;
+import thercn.terminal.TLog;
 import thercn.terminal.R;
 
 public class FileManagerActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
 
     public static File[] getFiles(String path) {
-		Log.e("", path);
+		TLog.e("", path);
 
 		File[] files = new File(path).listFiles();
 		Arrays.sort(files, new Comparator<File>() {
